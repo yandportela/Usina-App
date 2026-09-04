@@ -1,11 +1,11 @@
 class Safra {
-  final int id;
+  final int? id;
   final String nomeSafra;
   final DateTime dataInicio;
   final DateTime dataFim;
 
   Safra({
-    required this.id,
+    this.id,
     required this.nomeSafra,
     required this.dataInicio,
     required this.dataFim,

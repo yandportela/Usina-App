@@ -1,21 +1,21 @@
-import 'equipamento.dart';
 import 'safra.dart';
+import 'unidade.dart';
 import 'tipo_informacao.dart';
 
-class Medicao {
-  final int id;
+class Medicoes {
+  final int? id;
   final Safra safra;
+  final Unidade unidade;
   final TipoInformacao tipoInformacao;
   final double valor;
   final DateTime data;
-  final Equipamento equipamento;
 
-  Medicao({
-    required this.id,
+  Medicoes({
+    this.id,
     required this.safra,
+    required this.unidade,
     required this.tipoInformacao,
     required this.valor,
     required this.data,
-    required this.equipamento,
   });
 }

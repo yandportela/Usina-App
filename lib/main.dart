@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'screens/login_page.dart';
 import 'screens/tela_principal.dart';
+
 
 void main() {
   runApp(const UsinaApp());
@@ -7,6 +10,11 @@ void main() {
 
 class UsinaApp extends StatelessWidget {
   const UsinaApp({super.key});
+
+  Future<bool> verificarLogin() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('loginRealizado') ?? false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +27,22 @@ class UsinaApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const TelaPrincipal(),
+      home: FutureBuilder<bool>(
+        future: verificarLogin(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+          if (snapshot.data == true) {
+            return const TelaPrincipal();
+          }
+          return const LoginPage();
+        },
+      ),
     );
   }
 }

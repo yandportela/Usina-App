@@ -5,6 +5,7 @@ import 'screens/tela_principal.dart';
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const UsinaApp());
 }
 
